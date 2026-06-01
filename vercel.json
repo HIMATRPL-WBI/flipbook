@@ -1,5 +1,7 @@
 {
   "version": 2,
-  "buildCommand": "NITRO_PRESET=vercel vite build",
-  "outputDirectory": ".output"
+  "outputDirectory": "dist/client",
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/" }
+  ]
 }
