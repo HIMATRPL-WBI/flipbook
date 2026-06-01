@@ -1,0 +1,110 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Caveat:wght@500;700&family=Kalam:wght@400;700&family=Patrick+Hand&display=swap');
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-border: var(--border);
+  --color-mustard: var(--mustard);
+  --color-slate-violet: var(--slate-violet);
+  --color-kraft: var(--kraft);
+  --color-paper: var(--paper);
+  --color-grid-line: var(--grid-line);
+  --font-marker: 'Permanent Marker', cursive;
+  --font-caveat: 'Caveat', cursive;
+  --font-kalam: 'Kalam', cursive;
+  --font-hand: 'Patrick Hand', cursive;
+}
+
+:root {
+  --radius: 0.625rem;
+  --paper: oklch(0.97 0.018 120);
+  --grid-line: oklch(0.86 0.03 150 / 0.55);
+  --background: var(--paper);
+  --foreground: oklch(0.22 0.012 260);
+  --card: oklch(0.99 0.008 90);
+  --card-foreground: oklch(0.22 0.012 260);
+  --primary: oklch(0.22 0.012 260);
+  --primary-foreground: oklch(0.98 0.01 90);
+  --secondary: oklch(0.85 0.13 85);
+  --secondary-foreground: oklch(0.22 0.012 260);
+  --muted: oklch(0.93 0.02 120);
+  --muted-foreground: oklch(0.45 0.02 260);
+  --accent: oklch(0.65 0.09 285);
+  --accent-foreground: oklch(0.98 0 0);
+  --border: oklch(0.22 0.012 260 / 0.15);
+  --mustard: oklch(0.82 0.14 85);
+  --slate-violet: oklch(0.62 0.08 280);
+  --kraft: oklch(0.68 0.08 70);
+}
+
+@layer base {
+  * { border-color: var(--color-border); }
+  html, body { background-color: var(--paper); color: var(--foreground); }
+  body {
+    font-family: var(--font-hand);
+    background-image:
+      linear-gradient(var(--grid-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+    background-size: 28px 28px;
+    background-attachment: fixed;
+  }
+}
+
+@layer utilities {
+  .font-marker { font-family: var(--font-marker); }
+  .font-caveat { font-family: var(--font-caveat); }
+  .font-kalam { font-family: var(--font-kalam); }
+  .font-hand { font-family: var(--font-hand); }
+
+  .washi-tape {
+    position: absolute;
+    width: 110px;
+    height: 26px;
+    background: repeating-linear-gradient(45deg, oklch(0.85 0.13 85 / 0.85) 0 8px, oklch(0.88 0.1 90 / 0.85) 8px 16px);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+  }
+  .washi-tape.violet {
+    background: repeating-linear-gradient(45deg, oklch(0.72 0.08 285 / 0.8) 0 8px, oklch(0.78 0.06 285 / 0.8) 8px 16px);
+  }
+  .washi-tape.kraft {
+    background: repeating-linear-gradient(45deg, oklch(0.7 0.08 70 / 0.85) 0 8px, oklch(0.75 0.07 70 / 0.85) 8px 16px);
+  }
+
+  .sticky-note {
+    position: relative;
+    padding: 1.25rem 1rem;
+    box-shadow: 2px 4px 10px rgba(0,0,0,0.12);
+    font-family: var(--font-kalam);
+  }
+
+  .float-slow { animation: float-slow 7s ease-in-out infinite; }
+  .float-slower { animation: float-slow 10s ease-in-out infinite; }
+  .float-slowest { animation: float-slow 13s ease-in-out infinite; }
+
+  @keyframes float-slow {
+    0%, 100% { transform: translateY(0) rotate(var(--r, 0deg)); }
+    50% { transform: translateY(-10px) rotate(calc(var(--r, 0deg) + 1deg)); }
+  }
+
+  .paper-shadow { box-shadow: 0 10px 30px -10px rgba(0,0,0,0.25), 0 2px 6px rgba(0,0,0,0.08); }
+}
