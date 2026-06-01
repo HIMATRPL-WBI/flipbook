@@ -1,6 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 import { Maximize2, X } from "lucide-react";
 import "./flipbook.css";
+import {
+  Dialog,
+  DialogContent,
+  DialogTrigger,
+  DialogClose,
+} from "@/components/ui/dialog";
 
 const PAGES = [
   "https://res.cloudinary.com/dwfvqbhiv/image/upload/v1780286364/1_seuhep.png",
@@ -59,58 +65,52 @@ function BookInstance({ fullscreen }: { fullscreen?: boolean }) {
 }
 
 export default function Flipbook() {
-  const [open, setOpen] = useState(false);
-
-  useEffect(() => {
-    if (!open) return;
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setOpen(false);
-    };
-    document.body.style.overflow = "hidden";
-    window.addEventListener("keydown", onKey);
-    return () => {
-      document.body.style.overflow = "";
-      window.removeEventListener("keydown", onKey);
-    };
-  }, [open]);
-
   return (
-    <>
-      <div className="flipbook-wrap relative">
-        <BookInstance />
-        <button
-          type="button"
-          onClick={() => setOpen(true)}
-          className="absolute top-2 right-2 z-10 flex items-center gap-2 bg-card border border-border paper-shadow px-3 py-1.5 font-caveat text-lg rotate-[2deg] hover:rotate-0 hover:bg-[var(--mustard)] transition-all"
-          aria-label="Buka flipbook fullscreen"
-        >
-          <Maximize2 className="w-4 h-4" />
-          full page
-        </button>
-      </div>
+    <div className="flipbook-wrap relative">
+      <BookInstance />
 
-      {open && (
-        <div className="flipbook-fs-overlay" role="dialog" aria-modal="true">
+      <Dialog>
+        <DialogTrigger asChild>
           <button
             type="button"
-            onClick={() => setOpen(false)}
-            className="absolute top-4 right-4 z-20 flex items-center gap-2 bg-card border border-border paper-shadow px-3 py-1.5 font-caveat text-xl rotate-[-2deg] hover:rotate-0 hover:bg-[var(--mustard)] transition-all"
-            aria-label="Tutup fullscreen"
+            className="absolute top-2 right-2 z-10 flex items-center gap-2 bg-card border border-border paper-shadow px-3 py-1.5 font-caveat text-lg rotate-[2deg] hover:rotate-0 hover:bg-[var(--mustard)] transition-all"
+            aria-label="Buka flipbook fullscreen"
           >
-            <X className="w-4 h-4" />
-            close
+            <Maximize2 className="w-4 h-4" />
+            view larger
           </button>
-          <p className="absolute top-5 left-6 font-marker text-xl sm:text-2xl text-foreground rotate-[-3deg] select-none">
-            MAKRAB <span className="text-[var(--slate-violet)]">2026</span>
-          </p>
-          <div className="flipbook-fs-inner">
-            <BookInstance fullscreen />
+        </DialogTrigger>
+        <DialogContent className="max-w-[95vw] w-[95vw] h-[90vh] p-0 bg-transparent border-none shadow-none flex items-center justify-center">
+          <div className="relative w-full h-full flex items-center justify-center overflow-visible">
+            {/* Header in Pop-up */}
+            <div className="absolute top-0 left-0 right-0 flex justify-between items-center px-4 py-2 pointer-events-none z-50">
+              <p className="font-marker text-2xl text-white rotate-[-2deg] drop-shadow-md">
+                MAKRAB <span className="text-[var(--mustard)]">2026</span>
+              </p>
+              <DialogClose asChild>
+                <button
+                  type="button"
+                  className="pointer-events-auto bg-white text-black border-2 border-black paper-shadow px-3 py-1 font-caveat text-xl hover:bg-[var(--mustard)] transition-all"
+                >
+                  CLOSE
+                </button>
+              </DialogClose>
+            </div>
+
+            {/* Flipbook Content */}
+            <div className="w-full h-full flex items-center justify-center overflow-visible">
+              <BookInstance fullscreen />
+            </div>
+
+            {/* Footer in Pop-up */}
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-50 bg-black/40 backdrop-blur-sm px-6 py-1.5 rounded-full border border-white/10 pointer-events-none">
+              <p className="font-caveat text-xl text-white/90">
+                klik halaman untuk membalik · ESC untuk tutup
+              </p>
+            </div>
           </div>
-          <p className="absolute bottom-4 left-1/2 -translate-x-1/2 font-caveat text-xl text-foreground/70">
-            klik halaman untuk flip · tekan ESC untuk keluar
-          </p>
-        </div>
-      )}
-    </>
+        </DialogContent>
+      </Dialog>
+    </div>
   );
 }

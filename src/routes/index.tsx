@@ -55,7 +55,7 @@ function Index() {
       {/* Header */}
       <header className="relative z-20 flex items-start justify-between px-4 sm:px-8 pt-6">
         <div className="font-marker text-sm sm:text-base bg-card paper-shadow px-3 py-2 rotate-[-4deg] border border-border">
-          WBI Politeknik
+          Politeknik WBI
         </div>
         <div className="font-marker text-sm sm:text-base bg-card paper-shadow px-3 py-2 rotate-[3deg] border border-border">
           HIMATRPL
@@ -88,14 +88,14 @@ function Index() {
       {/* Floating sticky notes around */}
       <StickyNote
         text="More than just a gathering, it's our first core memory."
-        className="absolute left-4 sm:left-10 top-[260px] sm:top-[300px] z-10"
+        className="absolute left-2 sm:left-6 top-[220px] sm:top-[260px] z-10"
         color="mustard"
         rotate="-6deg"
         tape="violet"
       />
       <StickyNote
         text="Awal dari semuanya."
-        className="absolute right-4 sm:right-12 top-[280px] sm:top-[320px] z-10 hidden sm:block"
+        className="absolute right-2 sm:right-8 top-[240px] sm:top-[280px] z-10 hidden sm:block"
         color="violet"
         rotate="5deg"
         tape="kraft"
@@ -103,7 +103,7 @@ function Index() {
       />
 
       {/* Doodles floating */}
-      <div className="pointer-events-none absolute left-[8%] top-[480px] text-foreground float-slowest" style={{ ["--r" as never]: "10deg", transform: "rotate(10deg)" }}>
+      <div className="pointer-events-none absolute left-[5%] top-[650px] text-foreground float-slowest opacity-50 sm:opacity-100" style={{ ["--r" as never]: "10deg", transform: "rotate(10deg)" }}>
         <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
           <circle cx="24" cy="24" r="10" stroke="currentColor" strokeWidth="2.5" fill="oklch(0.82 0.14 85)" />
           <circle cx="20" cy="22" r="1.5" fill="currentColor" />
@@ -113,7 +113,7 @@ function Index() {
       </div>
 
       {/* Crown doodle */}
-      <div className="pointer-events-none absolute right-[6%] top-[520px] float-slow" style={{ ["--r" as never]: "-8deg", transform: "rotate(-8deg)" }}>
+      <div className="pointer-events-none absolute right-[5%] top-[700px] float-slow opacity-50 sm:opacity-100" style={{ ["--r" as never]: "-8deg", transform: "rotate(-8deg)" }}>
         <svg width="60" height="44" viewBox="0 0 60 44" fill="none">
           <path d="M5 38 L10 14 L20 28 L30 8 L40 28 L50 14 L55 38 Z" stroke="oklch(0.22 0.012 260)" strokeWidth="2.5" fill="oklch(0.82 0.14 85)" strokeLinejoin="round" />
           <circle cx="10" cy="14" r="2.5" fill="oklch(0.62 0.08 280)" />
@@ -123,9 +123,9 @@ function Index() {
       </div>
 
       {/* Flipbook container */}
-      <section className="relative z-10 mt-72 sm:mt-80 px-4 sm:px-8 pb-24">
+      <section className="relative z-10 mt-4 sm:mt-6 px-4 sm:px-8 pb-24">
         <div className="mx-auto max-w-5xl">
-          <p className="font-caveat text-3xl text-center text-foreground mb-6 rotate-[-1deg]">
+          <p className="font-caveat text-2xl sm:text-3xl text-center text-foreground mb-4 rotate-[-1deg]">
             flip the pages → relive the moments ✨
           </p>
 
@@ -139,7 +139,7 @@ function Index() {
             <div className="bg-card paper-shadow border border-border p-3 sm:p-5 pb-12 sm:pb-16 rotate-[-1deg]">
               <div
                 id="flipbook-container"
-                className="relative w-full bg-[oklch(0.94_0.015_120)] border border-border overflow-hidden"
+                className="relative w-full bg-[oklch(0.94_0.015_120)] border border-border overflow-visible"
               >
                 <Flipbook />
               </div>
