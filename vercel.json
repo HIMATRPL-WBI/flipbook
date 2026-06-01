@@ -1,6 +1,5 @@
 {
   "version": 2,
-  "framework": "vite",
-  "buildCommand": "npm run build",
+  "buildCommand": "NITRO_PRESET=vercel vite build",
   "outputDirectory": ".output"
 }
